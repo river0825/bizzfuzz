@@ -4,7 +4,7 @@ import org.junit.Assert.*
 import java.lang.Exception
 import kotlin.test.assertFailsWith
 
-class FizzBuzzTest {
+class FizzBuzzWhizzTest {
 
     @Test
     fun Test_normal() {
