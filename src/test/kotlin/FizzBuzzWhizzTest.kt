@@ -80,15 +80,19 @@ class FizzBuzzWhizzTest {
     private fun fizzBuzzWhizz(n: Int): String {
         if (n < 0 || n > 100) throw Exception()
         var result = ""
-        if (isMatch(n, 3)) result += "Fizz"
+        result += fizz(n)
         if (isMatch(n, 5)) result += "Buzz"
         if (isMatch(n, 7)) result += "Whizz"
         if (result.isEmpty()) result = n.toString()
         return result
     }
 
+    private fun fizz(source: Int): String {
+        return if (isMatch(source, 3)) "Fizz" else ""
+    }
+
     private fun isMatch(source: Int, target: Int) = isMultiple(source, target)
-                || source.toString().contains(target.toString())
+            || source.toString().contains(target.toString())
 
     private fun isMultiple(n: Int, b: Int) = n % b == 0
 }
