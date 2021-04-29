@@ -4,7 +4,7 @@ import org.junit.Assert.*
 import java.lang.Exception
 import kotlin.test.assertFailsWith
 
-class FizzBuzzTest {
+class FizzBuzzWhizzTest {
 
     @Test
     fun Test_normal() {
@@ -79,13 +79,16 @@ class FizzBuzzTest {
 
     private fun fizzBuzzWhizz(n: Int): String {
         if (n < 0 || n > 100) throw Exception()
-        val shouldFizz: String = run { if (isMultiple(n, 3) || n.toString().contains("3")) "Fizz" else "" }
-        val shouldBuzz = run { if (isMultiple(n, 5) || n.toString().contains("5")) "Buzz" else "" }
-        val shouldWhizz = run { if (isMultiple(n, 7) || n.toString().contains("7")) "Whizz" else "" }
-        val normalNumber = run { if (shouldBuzz == "" && shouldFizz == "" && shouldWhizz == "") n.toString() else "" }
-
-        return shouldFizz + shouldBuzz + shouldWhizz + normalNumber
+        var result = ""
+        if (isMatch(n, 3)) result += "Fizz"
+        if (isMatch(n, 5)) result += "Buzz"
+        if (isMatch(n, 7)) result += "Whizz"
+        if (result.isEmpty()) result = n.toString()
+        return result
     }
+
+    private fun isMatch(source: Int, target: Int) = isMultiple(source, target)
+                || source.toString().contains(target.toString())
 
     private fun isMultiple(n: Int, b: Int) = n % b == 0
 }
